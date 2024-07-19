@@ -6,7 +6,7 @@ public class Magnetic {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		for(int t = 0; t < 10; t++) {
+		for(int t = 0; t < 1; t++) {
 			//맵 입력받기
 			int N = sc.nextInt();
 			int[][] map = new int[N][N];
