@@ -15,7 +15,7 @@ public class Millionaire {
 			for(int i = 0; i < N; i++)
 				price[i] = sc.nextInt();
 			
-//			//계산 1 앞에서 부터 계산하
+//			//계산
 //			int idx = 0;
 //			long total = 0;
 //			while (idx < N) {
@@ -38,18 +38,20 @@ public class Millionaire {
 //				else
 //					idx++;
 //			}
+//			result[t] = total;
+//		}
 			
-			//계산2 뒤에서 부터 계산하기
-			int total = 0;
-			int max = price[N -1];
-			for(int i = N - 2; i >= 0; i--) {
-				if(max > price[i])
-					total += (max - price[i]);
-				else {
-					max = price[i];
-				}
+		//계산2 뒤에서 부터 계산하기
+		int total = 0;
+		int max = price[N -1];
+		for(int i = N - 2; i >= 0; i--) {
+			if(max > price[i])
+				total += (max - price[i]);
+			else {
+				max = price[i];
 			}
-			result[t] = total;
+		}
+		result[t] = total;
 		}
 			
 		//출력 
