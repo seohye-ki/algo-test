@@ -8,7 +8,6 @@ import java.io.OutputStreamWriter;
 
 public class Ant {
 	public static void main(String[] args) throws IOException {
-//		Scanner sc = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		String tmp = br.readLine();
@@ -39,7 +38,5 @@ public class Ant {
 		bw.flush();
 		bw.close();
 		br.close();
-//		System.out.println(x + " " + y);
-//		sc.close();
 	}
 }
