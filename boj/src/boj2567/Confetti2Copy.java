@@ -94,7 +94,7 @@ public class Confetti2Copy {
 							//왼쪽하단
 							if(r == 99 - y && c == x) {
 								//좌 & 하
-								if(c < 0 || (c - 1 >= 0 && paper[r][c - 1] == 3) || r + 1 >= 100 || (r + 1 < 100 && paper[r + 1][c] == 3)) {
+								if(c - 1 < 0 || (c - 1 >= 0 && paper[r][c - 1] == 3) || r + 1 >= 100 || (r + 1 < 100 && paper[r + 1][c] == 3)) {
 									if(paper[r][c] == 1)
 										paper[r][c] = 1;
 									else
@@ -106,7 +106,7 @@ public class Confetti2Copy {
 							//왼쪽상단
 							else if(r == 100 - y - 10 && c == x) {
 								//상 & 좌
-								if(r < 0 || (r - 1 >= 0 && paper[r - 1][c] == 3) || c < 0 || (c - 1 >= 0 && paper[r][c - 1] == 3)) {
+								if(r - 1 < 0 || (r - 1 >= 0 && paper[r - 1][c] == 3) || c - 1 < 0 || (c - 1 >= 0 && paper[r][c - 1] == 3)) {
 									if(paper[r][c] == 1)
 										paper[r][c] = 1;
 									else
@@ -118,7 +118,7 @@ public class Confetti2Copy {
 							//오른쪽하단
 							else if(r == 99 - y && c == x + 9) {
 								//우 & 하
-								if(c >= 100 || (c + 1 < 100 && paper[r][c + 1] == 3) || r >= 100 || (r + 1 < 100 && paper[r + 1][c] == 3)) {
+								if(c + 1 >= 100 || (c + 1 < 100 && paper[r][c + 1] == 3) || r + 1 >= 100 || (r + 1 < 100 && paper[r + 1][c] == 3)) {
 									if(paper[r][c] == 1)
 										paper[r][c] = 1;
 									else
@@ -130,7 +130,7 @@ public class Confetti2Copy {
 							//오른쪽 상단
 							else {
 								//우 & 상
-								if(c >= 100 || (c + 1 < 100 && paper[r][c + 1] == 3) || r < 0|| (r - 1 >= 0 && paper[r - 1][c] == 3)) {
+								if(c + 1 >= 100 || (c + 1 < 100 && paper[r][c + 1] == 3) || r - 1 < 0|| (r - 1 >= 0 && paper[r - 1][c] == 3)) {
 									if(paper[r][c] == 1)
 										paper[r][c] = 1;
 									else
@@ -141,11 +141,12 @@ public class Confetti2Copy {
 							}
 						}
 					}
-					//변일때 아랫변, 윗변, 왼변, 오른변
+					//변일때 (아랫변, 윗변, 왼변, 오른변)
 					else if(r == 99 - y || r == 100 - y - 10 || c == x || c == x + 9) {
 						//빈공간에 변이 할당될때
 						if(paper[r][c] == 4)
 							paper[r][c] = 1;
+						
 						//테두리 공간에 변이 할당될때
 						else if(paper[r][c] == 3) {
 							paper[r][c] = 1;
@@ -182,6 +183,7 @@ public class Confetti2Copy {
 								}
 							}
 						}
+						
 						//변이나 꼭짓점에 변이 할당될때
 						else {
 							//아랫변
@@ -195,7 +197,7 @@ public class Confetti2Copy {
 							//윗변
 							else if(r == 100 - y - 10) {
 								//상
-								if(r + 1 > 100 || (r - 1 >= 0 && paper[r - 1][c] == 3))
+								if(r - 1 < 0 || (r - 1 >= 0 && paper[r - 1][c] == 3))
 									paper[r][c] = 1;
 								else
 									paper[r][c] = 0;
@@ -204,7 +206,7 @@ public class Confetti2Copy {
 							//왼변
 							else if(c == x) {
 								//좌
-								if(c - 1 < 0 || (c >= 1 && paper[r][c - 1] == 2))
+								if(c - 1 < 0 || (c - 1 >= 0 && paper[r][c - 1] == 3))
 									paper[r][c] = 1;
 								else
 									paper[r][c] = 0;
@@ -212,7 +214,7 @@ public class Confetti2Copy {
 							//오른변
 							else {
 								//우
-								if(c + 1 >= 100 || (c + 1 < 100 && paper[r][c + 1] == 2))
+								if(c + 1 >= 100 || (c + 1 < 100 && paper[r][c + 1] == 3))
 									paper[r][c] = 1;
 								else
 									paper[r][c] = 0;
