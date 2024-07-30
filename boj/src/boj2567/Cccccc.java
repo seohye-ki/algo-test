@@ -22,47 +22,221 @@ public class Cccccc {
 					if(c == x) {
 						//꼭짓점
 						if(r == y) {
-							paper[r][c] = 2;
+							if(paper[r][c] == 4)
+								paper[r][c] = 2;
+							else if(paper[r][c] == 3) {
+								paper[r][c] = 2;
+								if(0 <= c - 1  && (paper[r][c - 1] == 2 || paper[r][c - 1] == 1)) {
+									paper[r][c - 1]--;
+									paper[r][c]--;
+								}
+								if(0 <= r - 1 && (paper[r - 1][c] == 2 || paper[r - 1][c] == 1)) {
+									paper[r - 1][c]--;
+									paper[r][c]--;
+								}
+							}
+							else if(paper[r][c] == 2 || paper[r][c] == 1) {
+								if(r - 1 < 0 || (r - 1 >= 0 && paper[r - 1][c] == 3) || c - 1 < 0 || (c - 1 >= 0 && paper[r][c - 1] == 3)) {
+									if(paper[r][c] == 1)
+										paper[r][c] = 1;
+									else
+										paper[r][c] = 2;
+								}
+							}
+							else
+								paper[r][c] = 0;
+							//테두리
+							if(0 <= r - 1 && paper[r - 1][c] == 4)
+								paper[r - 1][c] = 3;
 						}
 						//꼭짓점 
 						else if(r == (y + 9)) {
-							paper[r][c] = 2;
+							if(paper[r][c] == 4)
+								paper[r][c] = 2;
+							else if(paper[r][c] == 3) {
+								paper[r][c] = 2;
+								if(0 <= c - 1 && (paper[r][c - 1] == 2 || paper[r][c - 1] == 1)) {
+									paper[r][c - 1]--;
+									paper[r][c]--;
+								}
+								if(r + 1 < 100 && (paper[r + 1][c] == 2 || paper[r + 1][c] == 1)) {
+									paper[r + 1][c]--;
+									paper[r][c]--;
+								}
+							}
+							else if(paper[r][c] == 2 || paper[r][c] == 1) {
+								if(c - 1 < 0 || (c - 1 >= 0 && paper[r][c - 1] == 3) || r + 1 >= 100 || (r + 1 < 100 && paper[r + 1][c] == 3)) {
+									if(paper[r][c] == 1)
+										paper[r][c] = 1;
+									else
+										paper[r][c] = 2;
+								}
+							}
+							else
+								paper[r][c] = 0;
+							//테두리
+							if(r + 1 < 100 && paper[r + 1][c] == 4)
+								paper[r + 1][c] = 3;
 						}
 						//변
 						else {
-							paper[r][c] = 1;
+							if(paper[r][c] == 4)
+								paper[r][c] = 1;
+							else if(paper[r][c] == 3) {
+								paper[r][c] = 1;
+								if(c - 1 >= 0 && (paper[r][c - 1] == 2 || paper[r][c - 1] == 1)) {
+									paper[r][c]--;
+									paper[r][c - 1]--;
+								}
+							}
+							else if(paper[r][c] != 0) {
+								if(c - 1 < 0 || (c - 1 >= 0 && paper[r][c - 1] == 3))
+									paper[r][c] = 1;
+								else
+									paper[r][c] = 0;
+							}
+							else
+								paper[r][c] = 0;
 						}
+						//테두리
+						if(0 <= c - 1 && paper[r][c - 1] == 4)	
+							paper[r][c - 1] = 3;
 					}
 					else if(c == (x + 9)) {
 						//꼭짓점
 						if(r == y) {
-							paper[r][c] = 2;
+							if(paper[r][c] == 4)
+								paper[r][c] = 2;
+							else if(paper[r][c] == 3) {
+								paper[r][c] = 2;
+								if(c + 1 < 100 && (paper[r][c + 1] == 2 || paper[r][c + 1] == 1)) {
+									paper[r][c + 1]--;
+									paper[r][c]--;
+								}
+								if(0 <= r - 1 && (paper[r - 1][c] == 2 || paper[r - 1][c] == 1)) {
+									paper[r - 1][c]--;
+									paper[r][c]--;
+								}
+							}
+							else if(paper[r][c] == 2 || paper[r][c] == 1) {
+								if(c + 1 >= 100 || (c + 1 < 100 && paper[r][c + 1] == 3) || r - 1 < 0|| (r - 1 >= 0 && paper[r - 1][c] == 3)) {
+									if(paper[r][c] == 1)
+										paper[r][c] = 1;
+									else
+										paper[r][c] = 2;
+								}
+							}
+							else
+								paper[r][c] = 0;
+							//테두리
+							if(0 <= r - 1 && paper[r - 1][c] == 4)
+								paper[r - 1][c] = 3;
 						}
 						//꼭짓점
 						else if(r == (y + 9)) {
-							paper[r][c] = 2;
+							if(paper[r][c] == 4)
+								paper[r][c] = 2;
+							else if(paper[r][c] == 3) {
+								paper[r][c] = 2;
+								if(c + 1 < 100 && (paper[r][c + 1] == 2 || paper[r][c + 1] == 1)) {
+									paper[r][c - 1]--;
+									paper[r][c]--;
+								}
+								if(r + 1 < 100 && (paper[r + 1][c] == 2 || paper[r + 1][c] == 1)) {
+									paper[r - 1][c]--;
+									paper[r][c]--;
+								}
+							}
+							else if(paper[r][c] == 2 || paper[r][c] == 1) {
+								if(c + 1 >= 100 || (c + 1 < 100 && paper[r][c + 1] == 3) || r + 1 >= 100 || (r + 1 < 100 && paper[r + 1][c] == 3)) {
+									if(paper[r][c] == 1)
+										paper[r][c] = 1;
+									else
+										paper[r][c] = 2;
+								}
+							}
+							else
+								paper[r][c] = 0;
+							//테두리
+							if(r + 1 < 100 && paper[r + 1][c] == 4)
+								paper[r + 1][c] = 3;
 						}
 						//변
 						else {
-							paper[r][c] = 1;
+							if(paper[r][c] == 4)
+								paper[r][c] = 1;
+							else if(paper[r][c] == 3) {
+								paper[r][c] = 1;
+								if(c + 1 < 100 && (paper[r][c + 1] == 2 || paper[r][c + 1] == 1)) {
+									paper[r][c]--;
+									paper[r][c + 1]--;
+								}
+							}
+							else if(paper[r][c] != 0) {
+								if(c + 1 >= 100 || (c + 1 < 100 && paper[r][c + 1] == 3))
+									paper[r][c] = 1;
+								else
+									paper[r][c] = 0;
+							}
+							else
+								paper[r][c] = 0;
 						}
+						//테두리
+						if(c + 1 < 100 && paper[r][c + 1] == 4)	
+							paper[r][c + 1] = 3;
 					}
 					else {
 						//변
 						if(r == y) {
-							paper[r][c] = 1;
+							if(paper[r][c] == 4)
+								paper[r][c] = 1;
+							else if(paper[r][c] == 3) {
+								paper[r][c] = 1;
+								if(r - 1 >= 0 && (paper[r - 1][c] == 2 || paper[r - 1][c] == 1)) {
+									paper[r][c]--;
+									paper[r - 1][c]--;
+								}
+							}
+							else if(paper[r][c] != 0) {
+								if(r - 1 < 0 || (r - 1 >= 0 && paper[r - 1][c] == 3))
+									paper[r][c] = 1;
+								else
+									paper[r][c] = 0;
+							}
+							else
+								paper[r][c] = 0;
+							//테두리
+							if(0 <= r - 1 && paper[r - 1][c] == 4)
+								paper[r - 1][c] = 3;
 						}
 						//변 
 						else if(r == (y + 9)) {
-							paper[r][c] = 1;
+							if(paper[r][c] == 4)
+								paper[r][c] = 1;
+							else if(paper[r][c] == 3) {
+								paper[r][c] = 1;
+								if(r + 1 < 100 && (paper[r + 1][c] == 2 || paper[r + 1][c] == 1)) {
+									paper[r][c]--;
+									paper[r + 1][c]--;
+								}
+							}
+							else if(paper[r][c] != 0) {
+								if(r + 1 >= 100 || (r + 1 < 100 && paper[r + 1][c] == 3))
+									paper[r][c] = 1;
+								else
+									paper[r][c] = 0;
+							}
+							else
+								paper[r][c] = 0;
+							//테두리
+							if(r + 1 < 100 && paper[r + 1][c] == 4)
+								paper[r + 1][c] = 3;
 						}
 						//면
 						else {
 							paper[r][c] = 0;
 						}
 					}
-					//테두리 
-					
 				}
 			}
 			for(int i = 0;  i < 100; i++) {
@@ -72,6 +246,15 @@ public class Cccccc {
 				System.out.println();
 			}
 		}
+		//둘레 계산
+				int total = 0;
+				for(int i = 0;  i < 100; i++) {
+					for(int j = 0; j < 100; j++) {
+						if(paper[i][j] == 1 || paper[i][j] == 2)
+							total += paper[i][j];
+					}
+				}
+				System.out.println(total);
 		sc.close();		
 	}
 }
