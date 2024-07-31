@@ -3,7 +3,7 @@ package boj2567;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Confetti2Copy2 {
+public class Confetti2_v1 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		//100 * 100 도화지

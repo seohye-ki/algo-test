@@ -3,7 +3,7 @@ package boj2567;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Cccccc {
+public class Confetti2_v2 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		//4: 빈공간 3: 테두리, 2: 꼭짓점, 1: 변, 0: 면 
