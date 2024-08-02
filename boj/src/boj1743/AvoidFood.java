@@ -3,13 +3,13 @@ package boj1743;
 import java.util.Scanner;
 
 public class AvoidFood {
-	static int cnt = 0;
 	static int[] dr = {-1, 1, 0, 0}; //상하좌우
 	static int[] dc = {0, 0, -1, 1};
 	static int[][] visit;
 	static int[][] map;
 	static int N;
 	static int M;
+	static int cnt;
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -49,7 +49,7 @@ public class AvoidFood {
 			int r = i + dr[k];
 			int c = j + dc[k];
 			
-			if(visit[i][j] == 0 && map[r][c] == 1 && 0 <= r && r < N && 0 <= c && c < M)
+			if(0 <= r && r < N && 0 <= c && c < M && visit[r][c] == 0 && map[r][c] == 1)
 				dfs(r, c);
 		}
 	}
