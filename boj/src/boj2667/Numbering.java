@@ -1,7 +1,6 @@
 package boj2667;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -32,7 +31,6 @@ public class Numbering {
 		}
 		
 		//dfs
-		int idx = 0;
 		for(int i = 0; i < N; i++) {
 			for(int j = 0; j < N; j++) {
 				if(visited[i][j] == 0 && map[i][j] == 1) {
