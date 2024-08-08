@@ -7,30 +7,35 @@ import java.util.Scanner;
 public class DrawStar {
 	    public static void main(String[] args) {
 	    	Scanner sc = new Scanner(System.in);
-	    	int[][] line = new int[5][3];
-	      	for(int i = 0; i < 5; i++) {
+	    	int[][] line = new int[3][3];
+	      	for(int i = 0; i < 3; i++) {
 	    		for(int j = 0; j < 3; j++) {
 	    			line[i][j] = sc.nextInt();
 	    		}
 	    	}
 	    	
 	        ArrayList<int[]> star = new ArrayList<>();
-	        //모든 조합 확인해보기
+	      //모든 조합 확인해보기
 	        for(int i = 0;  i < line.length; i++){
 	            for(int j = i + 1; j < line.length; j++){
-	                int[] f1 = line[i];
-	                int[] f2 = line[j];
-	                // System.out.println(f1[0] + " " + f1[1] + " " + f1[2]);
-	                // System.out.println(f2[0] + " " + f2[1] + " " + f2[2]);
+	                long[] f1 = new long[3];
+	                long[] f2 = new long[3];
+	                for(int k = 0; k < 3; k++){
+	                    f1[k] = line[i][k];
+	                    f2[k] = line[j][k];
+	                }
 	                //교점 구하기
-	                if(((f1[0] * f2[1]) - (f1[1] * f2[0])) == 0) // AD - BC = 0 평행이거나 일치하는 경우
+	                long N = (f1[0] * f2[1]) - (f1[1] * f2[0]);
+	                if(N == 0) // AD - BC = 0 평행이거나 일치하는 경우
 	                    continue;
-	                double x = (double)((f1[1] * f2[2]) - (f1[2] * f2[1])) / (double)((f1[0] * f2[1]) - (f1[1] * f2[0])); // BF - ED / AD - BC
-	                double y = (double)((f1[2] * f2[0]) - (f1[0] * f2[2])) / (double)((f1[0] * f2[1]) - (f1[1] * f2[0])); // EC - AF / AD - BC
-	                System.out.println("double x : " + x + " double y : " + y);
-	                System.out.println("int x : " + (x % 1) + " int y : " + (y % 1));
-	                if(x - (int)x == 0.0 && y - (int)y == 0.0) //가능한 좌표
-	                   star.add(new int[] {(int)x,(int)y});
+	                long xN = (f1[1] * f2[2]) - (f1[2] * f2[1]); // BF - ED / AD - BC
+	                long yN = (f1[2] * f2[0]) - (f1[0] * f2[2]); // EC - AF / AD - BC
+	                if(xN % N == 0 && yN % N == 0) { //가능한 좌표
+	                    int x = (int)(xN / N);
+	                    int y = (int)(yN / N);
+	                    star.add(new int[] {(int)x,(int)y});
+	                }
+
 	            }
 	        }
 	        
@@ -38,55 +43,53 @@ public class DrawStar {
 	        	System.out.println("x : " + star.get(i)[0] + " y : " + star.get(i)[1]);
 	        
 	        //열 최대/최소, 행 최대/최소 구하기
-	        int rowMin = star.get(0)[0];
-	        int rowMax = star.get(0)[0];
-	        int colMin = star.get(0)[1];
-	        int colMax = star.get(0)[1];
+	        int xMin = star.get(0)[0];
+	        int xMax = star.get(0)[0];
+	        int yMin = star.get(0)[1];
+	        int yMax = star.get(0)[1];
 	        for(int i = 0; i < star.size(); i++) {
-	        	if(star.get(i)[0] < rowMin)
-	        		rowMin = star.get(i)[0];
-	        	if(rowMax < star.get(i)[0])
-	        		rowMax = star.get(i)[0];
-	        	if(star.get(i)[1] < colMin)
-	        		colMin = star.get(i)[1];
-	        	if(colMax < star.get(i)[1])
-	        		colMax = star.get(i)[1];
-	        	System.out.println("rowMin : " + rowMin + " rowMax : " + rowMax + " colMin : " + colMin + " colMax : " + colMax);
+	        	if(star.get(i)[0] < xMin)
+	        		xMin = star.get(i)[0];
+	        	if(xMax < star.get(i)[0])
+	        		xMax = star.get(i)[0];
+	        	if(star.get(i)[1] < yMin)
+	        		yMin = star.get(i)[1];
+	        	if(yMax < star.get(i)[1])
+	        		yMax = star.get(i)[1];
+	        	System.out.println("xMin : " + xMin + " xMax : " + xMax + " yMin : " + yMin + " yMax : " + yMax);
 	        }
 	        
 	        //map 열과 행 구하기
-	        int row = rowMax - rowMin + 1;
-	        int col = colMax - colMin + 1;
-	        System.out.println("row : " + row + " col : " + col);
+	        int x = xMax - xMin + 1;
+	        int y = yMax - yMin + 1;
+	        System.out.println("x : " + x + " y : " + y);
 	        
-	        //map 만들기
-	        String[] answer;
-	        if(row == 1 && col == 1) {
-	        	String[] map = {"*"};
-	        	//answer에 넣기
-	        	answer = map;
-	        }
-	        else {
-	        	String[][] map = new String[row][col];
-	        	for(int i = 0; i < row; i++)
-	        		Arrays.fill(map[i], ".");
-	        	//별찍기
-	        	for(int i = 0; i < star.size(); i++) {
-	        		int x = rowMin - star.get(i)[0];
-	        		int y = colMin - star.get(i)[1];
-	        		map[x][y] = "*";
-	        	}
-
-	        	//answer에 넣기
-	        	answer = new String[row];
-	        	for(int i = 0; i < row; i++) {
-	        		for(int j = 0; j < col; j++) {
-	        			answer[i] += map[i][j];
-	        		}
+	        //map 생성 및 초기화
+	        String[][] map = new String[y][x];
+	        for(int i = 0; i < y; i++)
+	        	Arrays.fill(map[i], ".");
+	        System.out.println(Arrays.deepToString(map));
+	        
+	        //map에 별찍기
+	        for(int i = 0; i < star.size(); i++) {
+	        	int col = Math.abs(xMin - star.get(i)[0]);
+	        	System.out.println("col : " + col);
+	        	
+        		int row = Math.abs(yMin + star.get(i)[1]);
+	        	System.out.println("row : " + row);
+        		map[y - 1 - row][col] = "*";
+        	}
+	        System.out.println(Arrays.deepToString(map));
+	        
+	        //answer에 넣기
+	        String[] answer = new String[y];
+	        for(int i = 0; i < y; i++) {
+	        	answer[i] = map[i][0];
+	        	for(int j = 1; j < x; j++) {
+	        		answer[i] += map[i][j];
 	        	}
 	        }
 	        
-	        //별찍기
 	        System.out.println(Arrays.toString(answer));
 	        sc.close();
 	    }
